@@ -73,7 +73,7 @@ const enum MotorRotation {
     Backward = -1
 }
 
-// % weight=100 color=#0641f9 icon="\uf085"
+//% weight=100 color=#0641f9  icon="\uf085"
 namespace fischertechnik {
 
     /**
