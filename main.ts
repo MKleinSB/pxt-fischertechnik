@@ -111,7 +111,7 @@ namespace fischertechnik {
     * @param pin to be checked
     * @param value high 1 or low 0 
     */
-    //% blockId="ftdigitalWritePin" block="digital write pin %ftpin| to %wert"
+    //% blockId="ftdigitalWritePin" color="#FF0000" block="digital write pin %ftpin| to %wert"
     //% ftpin.fieldEditor="gridpicker" ftpin.fieldOptions.columns=3
     //% weight=93 blockGap=8
     //% value.min=0 value.max=1
