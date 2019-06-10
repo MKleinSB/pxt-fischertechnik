@@ -28,6 +28,17 @@ const enum ftIN {
     I6 = AnalogPin.P2
 }
 
+const enum switchPins {
+    //% block="I1 (P1)"
+    I1 = AnalogPin.P1,
+    //% block="I2 (P6)"
+    I2 = AnalogPin.P6,
+    //% block="I4 (P0)"
+    I4 = AnalogPin.P0,
+    //% block="I6 (P2)"
+    I6 = AnalogPin.P2
+}
+
 const enum ftOUT {
     //% block="M1 (P16)"
     O1 = DigitalPin.P16,
@@ -80,7 +91,7 @@ namespace fischertechnik {
     * Check if a specific pin is pressed
     * @param pin to be checked
     */
-    //% blockId="PinIsPressed" block="pin %ftpin|pressed"
+    //% blockId="PinIsPressed" block="switch %ftpin|pressed"
     // Gridpicker und 3 in eine Reihe
     //% ftpin.fieldEditor="gridpicker" ftpin.fieldOptions.columns=3
     // hohes Gewicht d.h. Block nach oben
@@ -89,7 +100,6 @@ namespace fischertechnik {
     //% ftpin.defl=ftIN.I1
     export function PinIsPressed(ftpin: ftIN): boolean {
         const pin = <DigitalPin><number>ftpin;
-        pins.setPull(pin, PinPullMode.PullUp);
         return pins.digitalReadPin(pin) == 0;
     }
 
@@ -97,12 +107,11 @@ namespace fischertechnik {
     * Check if a specific pin is released
     * @param pin to be checked
     */
-    //% blockId="PinIsReleased" block="pin %ftpin|released"
+    //% blockId="PinIsReleased" block="switch %ftpin|released"
     //% ftpin.fieldEditor="gridpicker" ftpin.fieldOptions.columns=3
     //% weight=94 blockGap=8
     export function PinIsReleased(ftpin: ftIN): boolean {
         const pin2 = <DigitalPin><number>ftpin;
-        pins.setPull(pin2, PinPullMode.PullUp);
         return pins.digitalReadPin(pin2) == 1;
     }
 
@@ -121,43 +130,28 @@ namespace fischertechnik {
         return;
     }
 
-    /**
-    * Define a pin to send up/down event messages.
-    * only necessary for OnPinPressed and OnPinReleased.
-    * Sets the pullmode for the pin Up.
-    * @param pin to be used as switch
-    */
-    //% blockId="PinAsSwitch" block="declare pin %ftpin| as switch"
-    //% ftpin.fieldEditor="gridpicker" ftpin.fieldOptions.columns=3
-    //% weight=83 blockGap=8
-    export function PinAsSwitch(ftpin: ftIN) {
-        const pin3 = <DigitalPin><number>ftpin;
-        pins.setPull(pin3, PinPullMode.PullUp);
-        return;
-    }
 
     /**
     * Do something when one of the pins is pressed.
-    * Use PinAsSwitch first!
     * @param pin to be checked
     */
-    //% blockId="OnPinPressed" block="on pin %ftIN | pressed"
-    //% ftpin.fieldEditor="gridpicker" ftpin.fieldOptions.columns=3
+    //% blockId="OnPinPressed" block="on switch %switchPins | pressed"
+    //% ftpin.fieldEditor="gridpicker" ftpin.fieldOptions.columns=2
     //% weight=82 blockGap=8
-    export function OnPinPressed(ftpin: ftIN, handler: Action) {
+    export function OnPinPressed(ftpin: switchPins, handler: Action) {
         const pin4 = <DigitalPin><number>ftpin;
         pins.onPulsed(pin4, <number>pushType.down, handler);
     }
 
+
     /**
     * Do something when one of the pins is released.
-    * Use PinAsSwitch first!
     * @param pin to be checked
     */
-    //% blockId="OnPinReleased" block="on pin %ftIN | released"
+    //% blockId="OnPinReleased" block="on switch %ftIN | released"
     //% ftpin.fieldEditor="gridpicker" ftpin.fieldOptions.columns=3
     //% weight=81 blockGap=8
-    export function OnPinReleased(ftpin: ftIN, handler: Action) {
+    export function OnPinReleased(ftpin: switchPins, handler: Action) {
         const pin5 = <DigitalPin><number>ftpin;
         pins.onPulsed(pin5, <number>pushType.up, handler);
     }
