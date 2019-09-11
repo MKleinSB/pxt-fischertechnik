@@ -1,5 +1,7 @@
 {
-    "State.High|block": "An",
-    "State.Low|block": "Aus",
+    "MotorRotation.Forward|block": "Vorwärts",
+    "MotorRotation.Backward|block": "Rückwärts",
+    "FTMotor.ALL|block": "Alle",
+    "fischertechnik.PinIsPressed|block": "Schalter %ftpin| gedrückt",
     "{id:category}Fischertechnik": "Fischertechnik"
 }
