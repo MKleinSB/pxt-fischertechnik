@@ -1,8 +1,5 @@
 {   
     "State.High|block": "An",
     "State.Low|block": "Aus",
-    "MCP23017.initMCP23017LED|block": "initialisiere den MCP23017 für LEDs",
-    "MCP23017.setLeds|block": "schalte alle LEDs %zustand",
-    "MCP23017.setLed|block": "schalte LED %name | auf %zustand",
-    "{id:category}MCP23017": "MCP23017easy"
+    "{id:category}Fischertechnik": "Fischertechnik"
 }
